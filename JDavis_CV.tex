@@ -1,0 +1,830 @@
+% J. Davis CV
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{tgbonum}
+\usepackage{arev}
+\usepackage{scrextend}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{etaremune}
+\usepackage{ragged2e}
+\usepackage{xspace}
+\usepackage{xifthen}
+
+
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily}
+
+% \input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+%\usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+%\usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+%\usepackage[default]{AlegreyaSans}
+%\usepackage[default]{ClearSans}
+%\usepackage[default]{Chivo}
+%\usepackage[sfdefault]{arev}
+\usepackage{cmbright}
+
+\usepackage[a4paper,
+            bindingoffset=0in,
+            left=0.75in,
+            right=0.75in,
+            top=1in,
+            bottom=1in,
+            footskip=.25in]{geometry}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+
+\titleformat{\section}{
+  \vspace{-4pt}
+  \scshape
+  \raggedright
+  \fontsize{13pt}{11}
+  \selectfont\bfseries
+}{}{0em}{}[\color{black}{\titlerule[0.5pt]}\vspace{-5pt}]
+
+% https://tug.org/FontCatalogue/alegreyasans/
+
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+
+% Custom commands
+
+\newenvironment{indentPar}[1]{
+  \justifying
+  \begin{list}{}{\setlength{\leftmargin}{#1}}%
+  \item[]
+}
+{\end{list}}
+%https://latex.org/forum/viewtopic.php?t=547
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-7pt}}
+  }
+}
+
+\newcommand{\pubItem}[6]{
+  \item{
+    #1 % author(s)
+    (#2) % year
+    ``#3'' % title
+    \textit{#4} % journal
+    #5% vol or place
+    \ifthenelse{\equal{#6}{}}{}{
+       \href{#6}{[\textcolor{blue}{link}]}
+    } % link
+  % \vspace{-7pt}
+  }
+}
+
+\newcommand{\confItem}[7]{
+  \item{
+    #1 % author(s)
+    (#2) % year
+    ``#3'' % title
+    #4 % format
+    \textit{#5} % conference
+    #6%place
+    \ifthenelse{\equal{#7}{}}{}{
+       \href{#7}{[\textcolor{blue}{link}]}
+    } % link
+  % \vspace{-7pt}
+  }
+}
+
+\newcommand{\softwareDataEntry}[3]{
+  \begin{minipage}[t]{.75\textwidth}
+    \begin{flushleft}
+      \textbf{#1}
+    \end{flushleft}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{.23\textwidth}
+      \begin{flushright}
+        #2%
+      \end{flushright}%
+    \end{minipage}%
+   %https://tex.stackexchange.com/questions/422444/hfill-alignment-doesn%C2%B4t-work
+    \vspace{-8pt}%
+    \begin{indentPar}{0.5cm}%
+      #3%
+    \end{indentPar}%
+    \vspace{-5pt}%
+}
+
+\newcommand{\fieldExpEntry}[3]{
+  \begin{minipage}[t]{.75\textwidth}
+    \begin{flushleft}
+      \textbf{#1}
+    \end{flushleft}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{.23\textwidth}
+      \begin{flushright}
+        #2%
+      \end{flushright}%
+    \end{minipage}%
+   %https://tex.stackexchange.com/questions/422444/hfill-alignment-doesn%C2%B4t-work
+    \vspace{-8pt}%
+    \begin{indentPar}{0.5cm}%
+      #3%
+    \end{indentPar}%
+    \vspace{-5pt}%
+}
+
+\newcommand{\teachingExpEntry}[4]{
+  \begin{minipage}[t]{.75\textwidth}
+    \begin{flushleft}
+      \textbf{#1}
+      #2
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.20\textwidth}
+    \begin{flushright}
+      #3%
+    \end{flushright}
+  \end{minipage}%
+  \vspace{-7pt}
+  \begin{indentPar}{0.5cm}
+    #4%
+  \end{indentPar}serviceExpEntry
+}
+
+\newcommand{\mentorshipExpEntry}[4]{
+  \begin{minipage}[t]{.75\textwidth}
+    \begin{flushleft}
+      \textbf{#1}
+      #2
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.20\textwidth}
+    \begin{flushright}
+      #3%
+    \end{flushright}
+  \end{minipage}%
+  \vspace{-7pt}
+  \begin{indentPar}{0.5cm}
+    #4%
+  \end{indentPar}
+}
+
+\newcommand{\serviceExpEntry}[4]{
+  \begin{minipage}[t]{.75\textwidth}
+    \begin{flushleft}
+      \textbf{#1}
+      #2
+    \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.20\textwidth}
+    \begin{flushright}
+      #3%
+    \end{flushright}
+  \end{minipage}%
+  \vspace{-7pt}
+  \begin{indentPar}{0.5cm}
+    #4%
+  \end{indentPar}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\cvItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\cvItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\newcommand{\pubItemListStart}{\begin{etaremune}[leftmargin=0.20in]}
+\newcommand{\pubItemListEnd}{\end{etaremune}\vspace{-5pt}}
+
+%\newcommand{\hp}{\textsuperscript{\ding{115}}}
+\newcommand{\highp}{$^\vartriangle$}
+\newcommand{\medp}{$^\circ$}
+\newcommand{\lowp}{$^\triangledown$}
+
+
+% RESUME STARTS HERE
+\begin{document}
+
+% HEADING
+\begin{minipage}[c]{.65\textwidth}
+  \flushleft
+  % \bigskip
+  \textbf{\LARGE Jacob R. Davis}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.30\textwidth}
+  \flushright
+  \href{mailto:jacrdavis@umass.edu}{davisjr@uw.edu}\\
+  \href{http://jakedavis.science/}{www.jakedavis.science}\\
+  \href{https://github.com/jacobrdavis}{github.com/jacobrdavis}\\
+\end{minipage}
+
+
+% \vspace{-8pt}
+
+% EDUCATION
+\section{Education}
+
+\begin{minipage}[t]{.7\textwidth}
+  \flushleft
+  \textbf{University of Washington; Seattle, WA}\\
+  % \setlength\parindent{14pt}
+  Ph.D. in Civil and Environmental Engineering with Data Science Option\\
+  Advisor: Dr. Jim Thomson
+\end{minipage}
+  \hfill
+  \begin{minipage}[t]{.25\textwidth}
+  \flushright
+  Anticipated 2025\\
+\end{minipage}
+
+\vspace{7pt}
+
+\begin{minipage}[t]{.89\textwidth}
+\flushleft
+\textbf{University of Massachusetts; Amherst, MA}\\
+M.S. in Mechanical Engineering; GPA: 4.00/4.00 \\
+Advisor: Dr. Krish Thiagarajan Sharman \\
+Thesis: \textit{Design and testing of a foundation raised oscillating surge wave energy converter} %\href{https://scholarworks.umass.edu/masters_theses_2/1144/}{[\textcolor{blue}{link}]}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.1\textwidth}
+\flushright
+Sept 2021\\
+\end{minipage}
+
+\vspace{7pt}
+
+\begin{minipage}[t]{.80\textwidth}
+\flushleft
+\textbf{University of Massachusetts; Amherst, MA}\\
+ B.S. in Mechanical Engineering, \textit{summa cum laude}; GPA: 3.95/4.00
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.19\textwidth}
+\flushright
+May 2019\\
+\end{minipage}
+
+\vspace{-1pt}
+
+%----------------------------------------------------------%
+% AWARDS
+\section{Awards}
+\vspace{-1pt}
+{\fontencoding{T1}\fontfamily{cmbr}\selectfont
+\begin{tabular}
+  {>{\raggedright\arraybackslash}p{.80\textwidth}%
+   >{\raggedleft\arraybackslash}p{.20\textwidth}%
+  }
+National Science Foundation Graduate Research Fellowship & 2020 -- 2025\\ % (\$138,000) 
+IMECE 2020 \textit{Best Outreach Effort} NSF Poster Presentation Award &	Fall 2020 \\
+University of Massachusetts Wind Energy Fellow & Fall 2019\\
+University of Massachusetts College of Engineering Dean's Fellowship  & Spring 2019\\ %(\$11,525)
+Best Student Concept Award, MIE Senior Capstone Design Competition & Spring 2019\\
+University of Massachusetts Amherst Dean's List, Fall and Spring Semesters & 2015 -- 2019 \\
+Sandra M. and John M. Ferriter College of Engineering Scholarship  & Fall 2018\\ % (\$1,670)
+
+\end{tabular}
+}
+\vspace{-4pt}
+
+%----------------------------------------------------------%
+% EXPERIENCE
+\section{Research Experience}
+\vspace{-1pt}
+%
+\begin{minipage}[t]{.75\textwidth}
+    \flushleft
+    \textbf{Graduate Research Assistant}\\
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.20\textwidth}
+    \flushright
+    Sept 2021 - present\\
+\end{minipage}
+Applied Physics Laboratory (APL), University of Washington %\href{https://apl.uw.edu/people/profile.php?last_name=Davis&first_name=Jacob}{[\textcolor{blue}{link}]}
+\\
+\textit{Projects}:
+\vspace{-7pt}
+\begin{enumerate}
+    \item \textit{Air-deployed wave buoys for hurricane forecast improvements}; NOPP Hurricane Coastal Impacts project (NHCI) \href{https://nopphurricane.sofarocean.com/}{[\textcolor{blue}{https://nopphurricane.sofarocean.com}]}.
+    \vspace{-7pt}
+    \item \textit{MicroSWIFT wave buoy development} \href{https://apl.uw.edu/project/project.php?id=swift}{[\textcolor{blue}{https://apl.uw.edu/project/project.php?id=swift}]}
+    \vspace{-7pt}
+\end{enumerate}
+%
+\vspace{7pt}
+%
+\begin{minipage}[t]{.75\textwidth}
+    \flushleft
+    \textbf{Graduate Research Assistant}\\
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.20\textwidth}
+    \flushright
+    2019 - 2021\\
+\end{minipage}
+Ocean Resources and Renewable Energy Lab (ORRE), University of Massachusetts Amherst\\
+\textit{Projects}:
+\vspace{-7pt}
+\begin{enumerate}
+    \item \textit{Variable geometry oscillating surge wave energy converter experiments}
+    \vspace{-7pt}
+    \item \textit{Oscillating surge wave energy converter experiments}
+    \vspace{-7pt}
+    \item \textit{Wave-current laboratory development}
+\end{enumerate}
+%
+% \vspace{7pt}
+%
+\begin{minipage}[t]{.70\textwidth}
+    \flushleft
+    \textbf{Nanotechnology NSF Research Experience for Undergraduates}\\
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.20\textwidth}
+    \flushright
+    Summer 2018\\
+\end{minipage} \\
+Institute of Materials Science, University of Connecticut at Storrs\\
+
+\textit{Projects}:
+\vspace{-7pt}
+     \begin{enumerate}
+            \item \textit{Mechanical properties and deformation behavior of shock-compressed magnesium single crystals}
+            \vspace{-7pt}
+            \item \textit{Study of the Hall-Petch relationship down to 3.7 nm grain size in nanocrystalline MgAl2O4}
+    \end{enumerate}
+%
+
+\break
+
+% TEACHING EXPERIENCE
+\section{Teaching and Mentoring}
+
+\teachingExpEntry
+  {Teaching Assistant}{University of Washington}
+  {Winter 2023}
+  {Workshop and lab lead for undergraduate Civil and Environmental Engineering Introduction to Fluid Mechanics course.}
+%
+\teachingExpEntry
+  {College of Engineering Teaching Fellow}{UMass Amherst}
+  {Fall 2020}
+  {Designed and instructed Engineering Solutions to the Climate Crisis, a freshman seminar geared towards a discussion of engineers and the roles they play in climate change mitigation, forecasting, and resilience; two sections totaling 36 students. Designed and graded assignments, developed in-class activities, and coordinated guest lectures to promote first-year student engagement and success.}
+%
+\teachingExpEntry
+  {Python Workshop Teaching Assistant}{UMass Amherst}
+  {Fall 2019}
+  {Provided teaching assistance to attendees of a multi-session, introductory Python workshop for mechanical and industrial engineering undergraduate and graduate students.}
+%
+\mentorshipExpEntry
+  {Residence Hall Academic Peer Mentor}{UMass Amherst}
+  {2017 -- 2019}
+  {Live-in academic mentor to 50 diverse first year undergraduate students. Supported students in academics, mental health, and social awareness.}
+%
+%----------------------------------------------------------%
+% SERVICE
+\section{Service}
+\serviceExpEntry
+  {Reviewer}{}
+  {2023 -- present}
+  {Geophysical Research Letters}
+  %https://pcc.uw.edu/people/graduate-student-steering-committee/
+
+\serviceExpEntry
+  {PCC Graduate Steering Committee (P-GraSC)}{University of Washington}
+  {2022 -- present}
+  {Member of the UW's Program on Climate Change (PCC) Graduate Steering Committee and Undergraduate Cohort subcommittee. Support the Undergraduate Cohort in their mission to connect the UW's undergraduate student body to researchers and professionals in climate-related fields through workshops and outreach events.
+  \href{https://uwpcc.ocean.washington.edu/person/Jacob_Davis}{[\textcolor{blue}{https://uwpcc.ocean.washington.edu/person/Jacob\_Davis}]}}
+
+  % \href{https://uwpcc.ocean.washington.edu/person/Jacob_Davis}{[\textcolor{blue}{https://uwpcc.ocean.washington.edu/person/Jacob_Davis}]}}
+  %https://pcc.uw.edu/people/graduate-student-steering-committee/
+
+\serviceExpEntry
+  {DINOSIP educational research cruise}{University of Washington}
+  {2023}
+  {Supported drifter demonstrations (microSWIFT) during a three-day educational research cruise aboard the R/V Rachel Carson for students in the Diverse + Inclusive Naval Oceanographic Summer internship program (DINOSIP).}
+
+\serviceExpEntry
+  {MIE Graduate Student Leadership Council}{UMass Amherst}
+  {2019 -- 2021}
+  {Co-organized workshops and seminars within the Mechanical and Industrial Engineering Department tailored towards
+  promoting graduate student professional growth.}
+
+ %
+% \mentorshipExpEntry
+%   {0.8}{Researchers, Educators, Business Leaders, and Students network; UMass Amherst}
+%   {0.18}{Spring 2020}
+% %
+% \mentorshipExpEntry
+%   {0.70}{Residence Hall Academic Peer Mentor; UMass Amherst}
+%   {0.25}{Fall 2017 - Winter 2019}
+% %
+
+% }
+% \vspace{-14pt}
+%----------------------------------------------------------%
+% TECHNICAL TOOLS AND EQUIPMENT
+% {\fontencoding{T1}\fontfamily{cmbr}\selectfont
+% \begin{flushright}
+%     \highp high proficiency \medp intermediate \lowp beginner 
+% \end{flushright}}
+% \vspace{-35pt}
+% \section{Technical Tools and Equipment}
+% \vspace{-1pt}
+% {\fontencoding{T1}\fontfamily{cmbr}\selectfont
+% \begin{tabular}
+%   {>{\raggedright\arraybackslash}p{.25\textwidth}%
+%    >{\raggedright\arraybackslash}p{.75\textwidth}%
+%   }
+% \textbf{Design and Analysis}:            & SolidWorks\highp, Creo Parametric\highp, ANSYS structural analysis\highp \\
+% \textbf{Fluids Simulation}:              & ANSYS Aqwa\medp, OpenFOAM\lowp (introductory knowledge) \\
+% \textbf{Wave \& Wind Energy}: & WEC-Sim\highp, FAST\medp, AeroDyn, TurbSim \\
+% \textbf{Programming}:                    & Python\highp, MATLAB\highp, Simulink\medp, Git, Linux, LaTeX\\
+% \textbf{Fabrication}:                     & Bridgeport mill, general shop tools, welding (FCAW), grinding and cutting \\
+% \end{tabular}
+% }
+% \vspace{-7pt}
+%----------------------------------------------------------%
+
+
+% Software Projects and Data
+\section{Software Projects and Data}
+%
+\softwareDataEntry
+  {PyWSRA}
+  {2023 -- present}
+  {A Python package for working with data from the Wide Swath Radar Altimeter (WSRA). \hfill\break
+  \href{https://github.com/jacobrdavis/PyWSRA}{[\textcolor{blue}{https://github.com/jacobrdavis/PyWSRA}]}}
+%
+\softwareDataEntry
+  {microSWIFTtelemetry}
+  {2022 -- present}
+  {Python functions for pulling telemetry from the microSWIFT wave buoy developed at the University of Washington Applied Physics Laboratory.
+  \href{https://github.com/SASlabgroup/microSWIFTtelemetry}{[\textcolor{blue}{https://github.com/SASlabgroup/microSWIFTtelemetry}]}}
+  %
+\softwareDataEntry
+  {microSWIFT v1}
+  {2020 -- present}
+  {Operational code for the microSWIFT v1 wave buoy developed at the University of Washington Applied Physics Laboratory. \href{https://github.com/SASlabgroup/microSWIFT}{[\textcolor{blue}{https://github.com/SASlabgroup/microSWIFT}]}}
+
+% Field and Lab Experience
+\section{Field and Laboratory Work}
+%
+\fieldExpEntry
+  {Wave buoy aerial deployments over the Alaskan Arctic coast}
+  {October 2022}
+  {Air drop of 10 microSWIFT wave buoys from a helicopter off the Alaskan Arctic coast (Oliktok Point) to obtain calibration measurements for a distributed acoustic sensing system during autumn ice freeze-up. Project: \textit{Persistent measurements of surface waves in landfast ice using fiber optic telecommunication cables} (PI: Dr. Maddie Smith).}
+%
+\fieldExpEntry
+  {Targeted wave buoy deployments ahead of Hurricane Ian}
+  {September 2022}
+  {Air drop of 20 wave buoys from an NP-3C with the Navy's Scientific Development Squadron (VXS-1) ahead of Hurricane Ian's landfall in southwestern Florida as a category 4. Project: \textit{NOPP Hurricane Coastal Impacts} (\textbf{Field Lead/Project Specialist}).}
+%
+\fieldExpEntry
+  {Wave buoy aerial test deployments off the East Coast US}
+  {August 2022}
+  {Air drop of 7 wave buoys from an NP-3C with the Navy's Scientific Development Squadron (VXS-1) offshore of Maryland. Project: \textit{NOPP Hurricane Coastal Impacts} (\textbf{Field Lead/Project Specialist}).}
+%
+\fieldExpEntry
+  {Wave buoy aerial test deployments in the Gulf of Mexico}
+  {July 2022}
+  {Air drop of 7 wave buoys from a helicopter operated by PHI Aviation (Houma, LA) offshore of coastal Louisiana. Project: \textit{NOPP Hurricane Coastal Impacts} (\textbf{Field Lead}).}
+%
+\fieldExpEntry
+  {Wave buoy aerial deployments over the Alaskan Arctic coast}
+  {June 2022}
+  {Air drop of 7 microSWIFT wave buoys from the chute of a NOAA Twin Otter and a helicopter off the Alaskan Arctic coast (Oliktok Point) to obtain calibration measurements for a distributed acoustic sensing system during spring ice break-out.}
+%
+\fieldExpEntry
+  {Wave buoy aerial test deployments over Hood Canal, WA}
+  {May 2022}
+  {Air drop of 8 wave buoys (Spotter and microSWIFT) from an open-door Cesna Caravan operated by Kapowsin Skydiving.}
+%
+\fieldExpEntry
+  {DUring Nearshore Event eXperiment (DUNEX), Duck, NC (1 week)}{October 2021} 
+  {Nearshore experiment on wave breaking using microSWIFT buoys, including helicopter deployments.} % of 11 wave buoys.}
+%
+\fieldExpEntry
+  {7-day cruise aboard R/V Thompson, Astoria Canyon}{September 2021}
+  {Astoria Canyon sediment coring (Chief Scientist: Andrea Ogston).}
+%
+\fieldExpEntry
+  {Variable geometry wave energy converter, UMass Amherst}{Spring 2021}
+  {Wave tank experiments on a wave energy converter which employs variable geometry modules to control the governing hydrodynamics of the body; scale model design and fabrication, instrumentation selection, wave tank experiments, and subsequent modeling and analysis. Project: National Renewable Energy Lab Technology Commercialization Fund (\textbf{Experiment Lead}).}
+%
+\fieldExpEntry
+  {Oscillating surge wave energy converter experiment, UMass Amherst}{Spring 2021}
+  {Wave tank experiments on the dynamics of a foundation-raised oscillating surge wave energy converter. Project: Master's Thesis  (\textbf{Experiment Lead}) }%(graduate thesis experiments)
+%
+\fieldExpEntry{Wave-current laboratory development, UMass Amherst}{2019-2021}{Lead role in the planning and development of the ORRE wave-current facility, including the mechanical and structural design of an 11-meter long, 5000-gallon recirculating wave-current flume. Directly involved in instrumentation selection, lab assembly, and data acquisition hardware setup.}
+
+% CERTIFICATIONS & TRAININGS
+\section{Certifications \& Trainings}
+\vspace{-1pt}
+Naval Aviation Survival Training Program (NASTP), non-aircrew; NAS Whidbey Island (exp. 2026)\\
+Helicopter Underwater Egress Training (HUET); Seafarers Worldwide (Anacortes, WA)\\
+APL small vessel certified; MA and WA state boater licenses
+\vspace{-7pt}
+%----------------------------------------------------------%
+% ACTIVITIES & INTERESTS
+\section{Activities \& Interests}
+\vspace{-1pt}
+\begin{tabular}
+  {>{\raggedright\arraybackslash}p{.55\textwidth}%
+   >{\raggedright\arraybackslash}p{.45\textwidth}%
+  }
+Automotive repair & Recreational ocean boating \\
+Performing musician (guitar, upright bass, drums, banjo) & Art (graphite, charcoal)\\
+Skiing, snowboarding, surfing, and backpacking & NAUI scuba certified \\
+\end{tabular}
+\vspace{-7pt}
+
+\clearpage
+%----------------------------------------------------------%
+% REFEREED PUBLICATIONS
+\section{Referreed Publications:}
+\label{sec:publications}
+\pubItemListStart
+  \pubItem
+    {Madison M. Smith, Jim Thomson, Michael G. Baker, Robert E. Abbott, \textbf{Jake Davis}}
+    {2023}
+    {Observations of ocean surface wave attenuation in sea ice using seafloor cables}
+    {Geophysical Research Letters}
+    {50, e2023GL105243}
+    {https://doi.org/10.1029/2023GL105243}
+  \pubItem
+    {\textbf{Jacob Davis}, Jim Thomson, Isabel A. Houghton, James D. Doyle, William A. Komaromi, Chris W. Fairall, Elizabeth J. Thompson, Jonathan R. Moskaitis}
+    {2023}
+    {Saturation of ocean surface wave slopes observed during hurricanes}
+    {Geophysical Research Letters}
+    {50, e2023GL104139}
+    {https://doi.org/10.1029/2023GL104139}
+  \pubItem
+    {Jim Thomson, Phil Bush, Viviana Castillo Contreras, Nate Clemett, \textbf{Jacob Davis}, Alex de Klerk, Emily Iseley, E. J. Rainville, Brenton Salmi, Joe Talbert}
+    {2023}
+    {Development and testing of microSWIFT expendable wave buoys} 
+    {Coastal Engineering Journal}
+    {(Accepted)}
+    {}%TODO: update
+  \pubItem
+    {Jessica M. Maita, Sarshad Rommel, \textbf{Jacob R. Davis}, Heonjune Ryou, James A. Wollmershauser, Edward P. Gorzkowski, Boris N. Feigelson, Mark Aindow, Seok-Woo Lee}
+    {2023}
+    {Grain size effect on the mechanical properties of nanocrystalline magnesium aluminate spinel}
+    {Acta Materialia} 
+    {}  % 118881 ISSN 1359-6454
+    {https://doi.org/10.1016/j.actamat.2023.118881}
+  \pubItem
+    {Michael Choiniere, \textbf{Jacob Davis}, Nhu Nguyen, Nathan Tom, Matthew Fowler, Krish Sharman}
+    {2021}
+    {Hydrodynamics and load shedding behavior of a variable geometry Oscillating Surge Wave Energy Converter (OSWEC)}
+    {Renewable Energy}
+    {}
+    {https://doi.org/10.1016/j.renene.2022.05.169}
+  \pubItem
+    {Tyler John Flanagan, Sriram Vijayan, Sergey Galitskiy, \textbf{Jacob Davis}, Benjamin A Bedard, Cyril L Williams, Avinash Dongare, Mark Aindow, Seok-Woo Lee}
+    {2020}
+    {Shock-Induced Deformation Twinning and Softening in Magnesium Single Crystals}
+    {Journal of Materials and Design}
+    {}
+    {https://doi.org/10.1016/j.matdes.2020.108884}
+  
+
+
+  % \pubItem{
+  %   {\textbf{Jacob Davis}, Jim Thomson, Isabel A. Houghton, James D. Doyle, William A. Komaromi, Chris W. Fairall, Elizabeth J. Thompson, Jonathan R. Moskaitis. “Saturation of ocean surface wave slopes observed
+  %   during hurricanes,” (in review) \textit{Geophysical Research Letters}. June 2023.}
+  %   % \href{https://www.sciencedirect.com/science/article/abs/pii/S0960148122008291}{[\textcolor{blue}{link}]}
+  % } %TODO: update
+  % \pubItem{
+  %   {Madison M. Smith, Jim Thomson, Michael G. Baker, Robert E. Abbott, \textbf{Jacob Davis}. “Observations of ocean surface wave attenuation in sea ice using seafloor cables,” (in review) \textit{Geophysical Research Letters}. July 2023.}
+  %   % \href{https://www.sciencedirect.com/science/article/abs/pii/S0960148122008291}{[\textcolor{blue}{link}]}
+  % } %TODO: update
+
+  % \pubItem{
+  %   {Jim Thomson, Phil Bush, Viviana Castillo Contreras, Nate Clemett, \textbf{Jacob Davis}, Alex de Klerk, Emily Iseley, E. J. Rainville, Brenton Salmi, Joe Talbert. “Development and testing of microSWIFT expendable wave buoys” (in review) \textit{Coastal Engineering Journal}. July 2023.}
+  %   % \href{https://www.sciencedirect.com/science/article/abs/pii/S0960148122008291}{[\textcolor{blue}{link}]}
+  % } %TODO: update
+
+
+  % \pubItem{
+  %   {Michael Choiniere, \textbf{Jacob Davis}, Nhu Nguyen, Nathan Tom, Matthew Fowler, Krish Sharman. “Hydrodynamics and load shedding behavior of a variable geometry Oscillating Surge Wave Energy Converter (OSWEC).” \textit{Renewable Energy}. July 2021.}
+  %   \href{https://www.sciencedirect.com/science/article/abs/pii/S0960148122008291}{[\textcolor{blue}{link}]}
+  % }
+  % \pubItem{
+  %   Tyler John Flanagan, Sriram Vijayan, Sergey Galitskiy, \textbf{Jacob Davis}, Benjamin A Bedard, Cyril L Williams, Avinash Dongare, Mark Aindow, Seok-Woo Lee. “Shock-Induced Deformation Twinning and Softening in Magnesium Single Crystals.” \textit{Journal of Materials and Design.} Vol. 193. June, 2020.
+  %   \href{https://doi.org/10.1016/j.matdes.2020.108884}{[\textcolor{blue}{link}]}
+  % }
+\pubItemListEnd
+
+% PROCEEDINGS AND OTHER PUBLICATIONS
+\section{Proceedings and Other Publications:}
+\label{sec:proceedings}
+\pubItemListStart
+  \pubItem
+    {Ciara Dorsay, Isabel Houghton, \textbf{Jacob Davis}, Jim Thompson, Pieter Smit, Eric Stackpole}
+    {2023}
+    {Aerial deployment of Spotter wave buoys during Hurricane Ian}
+    {Proceedings of OCEANS 2023 Gulf Coast Technical Program}
+    {Biloxi, MS}
+    {} %TODO: update
+  \pubItem
+    {Salman Husain, \textbf{Jacob Davis}, Nathan Tom, Krish Thiagarajan, Cole Burge, Nhu Nguyen}
+    {2022}
+    {Influence on structural loading of a wave energy converter by controlling variable-geometry components and the power take-off}
+    {Proceedings of the ASME 41st International Conference on Ocean, Offshore and Arctic Engineering (OMAE)}
+    {Hamburg, Germany}
+    {https://doi.org/10.1115/OMAE2022-81518}
+  \pubItem
+    {\textbf{Jacob Davis}}
+    {2021}
+    {Design and testing of a foundation raised  oscillating surge wave energy converter} 
+    {Master's Thesis}
+    {University of Massachusetts Amherst}
+    {https://scholarworks.umass.edu/masters_theses_2/1144/}
+  \pubItem
+    {Nhu Nguyen, \textbf{Jacob Davis}, Krish Thiagarajan, Nathan Tom, Cole Burge}
+    {2021}
+    {Optimizing power generation of a bottom-raised oscillating surge wave energy converter using a theoretical model}
+    {Proceedings of the 14th European Wave and Tidal Energy Conference}
+    {Plymouth, UK}
+    {https://www.nrel.gov/docs/fy22osti/79929.pdf}
+  \pubItem
+    {Cole Burge, Nathan Tom, Krish Thiagarajan, \textbf{Jacob Davis}, Nhu Nguyen}
+    {2021}
+    {Performance modeling of a variable-geometry oscillating surge wave energy converter on a raised foundation}
+    {Proceedings of the ASME 2021 40th International Conference on Ocean, Offshore and Arctic Engineering}
+    {Virtual}
+    {https://www.nrel.gov/docs/fy21osti/78852.pdf}
+  \pubItem
+    {Nhu Nguyen, \textbf{Jacob Davis}, Ahmed Alshuwaykh, Krish Thiagarajan}
+    {2020}
+    {Design, Analysis, and Development of a Wave-Current Laboratory}
+    {Proceedings of the ASME 2020 39th International Conference on Ocean, Offshore and Arctic Engineering, Volume 6A: Ocean Engineering}
+    {Online}
+    {https://doi.org/10.1115/OMAE2020-19253}
+\pubItemListEnd
+
+%----------------------------------------------------------%
+% CONFERENCES
+\section{Conference Presentations}
+\pubItemListStart
+  \confItem
+    {\textbf{Jacob Davis}, Jim Thomson, Isabel Houghton, Chris Fairall, Elizabeth Thompson, Gijs de Boer, William Komaromi, James Doyle}
+    {2023}
+    {Saturation of wave slopes observed during hurricanes}
+    {presented at}
+    {Waves in Sea Environments (WISE) meeting}
+    {Princeton, New Jersey}
+    {}
+  \confItem
+    {Jim Thomson, Madison Smith, \textbf{Jacob Davis}, Michael Baker, Robert Abbott}
+    {2023}
+    {Waves and sea ice measured with telecom cables at the Arctic coast}
+    {presented at}
+    {Waves in Sea Environments (WISE) meeting}
+    {Princeton, New Jersey}
+    {}
+  \confItem
+    {Michael Baker, Robert Abbott, Christian Stanciu, Jennifer Frederick, Madison Smith, Jim Thomson, \textbf{Jacob Davis}, Andres Peña-Castro, Brandon Schmandt}
+    {2023}
+    {Monitoring Arctic coastal processes with seafloor distributed acoustic and temperature sensing}
+    {poster presented at}
+    {Alaska Marine Science Symposium (AMSS)}
+    {Anchorage, Alaska}
+    {}% https://online.flippingbook.com/view/611616319/
+  \confItem
+    {\textbf{Jacob Davis}, Jim Thomson, Isabel Houghton, Chris Fairall, Elizabeth Thompson, Gijs de Boer}
+    {2022}
+    {Wave slopes observed during hurricanes using arrays of drifting buoys}
+    {poster presented at}
+    {Waves in sea environments (WISE)}
+    {Brest, France}
+    {}
+  \confItem
+    {\textbf{Jacob Davis}, Isabel Houghton, Jim Thomson, Pieter Smit, Gijs de Boer, Elizabeth Thompson, Tim Janssen, Chris Fairall}
+    {2022}
+    {Distributed sampling of hurricane waves}
+    {presented at}
+    {Ocean Sciences Meeting (OSM)}
+    {Online}
+    {}
+  \confItem
+    {\textbf{Jacob Davis}, Michael Choiniere, Nhu Nguyen, Nathan Tom, Krish Thiagarajan} 
+    {2020}
+    {Reducing the structural costs of a wave energy converter through variable geometry design and control}
+    {poster presented at}
+    {Intl. Mechanical Engineering Congress and Exposition (IMECE)}
+    {Online}
+    {https://imece.secure-platform.com/a/solicitations/121/sessiongallery/6003/application/57511}
+  \confItem
+    {Nhu Nguyen, \textbf{Jacob Davis}, Ahmed Alshuwaykh, Krish Thiagarajan}
+    {2020}
+    {Design, Analysis, and Development of a Wave-Current Laboratory}
+    {presented at}
+    {ASME 39th International Conference on Ocean, Offshore and Arctic Engineering (OMAE)}
+    {Online}
+    {https://doi.org/10.1115/OMAE2020-19253}
+\pubItemListEnd
+
+%
+% 2019 French American Innovation Day Floating Offshore Wind Workshop; Boston, MA (volunteer)\\
+%
+% 2019 North American Wind Energy Academy Conference; Amherst, MA (volunteer)\\
+%
+% 2019 American Wind Energy Association Offshore Wind Power Conference; Boston, MA (volunteer)
+%
+
+
+
+%----------------------------------------------------------%
+% % PROJECTS
+% \section{PROJECTS}
+% \vspace{-1pt}
+% {\fontencoding{T1}\fontfamily{cmbr}\selectfont
+% \begin{minipage}[t]{.80\textwidth}
+% \flushleft
+% \textbf{IEA 15 MW Offshore Wind Turbine Monopile Design} (Ocean Renewables Course)\\
+% \end{minipage}
+% \hfill
+% \begin{minipage}[t]{.18\textwidth}
+% \flushright
+% Spring 2020\\
+% \end{minipage}
+% \vspace{-7pt}
+% \cvItemListStart
+%      \resumeItem{Completed sizing and design of a monopile support structure for the IEA 15 MW offshore wind turbine}
+%      \resumeItem{Developed full-scale, finite element structural analysis ANSYS model (stress, deformation, modal, and buckling analyses) which incorporated hydrodynamic loads computed in ANSYS Aqwa, rotor and tower aerodynamic loads, gravitational loads, and monopile embedment into a nonlinear soil continuum}
+% \cvItemListEnd
+
+% \vspace{7pt}
+
+% \begin{minipage}[t]{.75\textwidth}
+% \flushleft
+% \textbf{Capstone Senior Design Team Project}\\
+% \end{minipage}
+% \hfill
+% \begin{minipage}[t]{.20\textwidth}
+% \flushright
+% Spring 2019\\
+% \end{minipage}
+% \vspace{-7pt}
+% \cvItemListStart
+%      \resumeItem{Designed a helical coil heat exchanger for use in a compost-based greenhouse heating system}
+%      \resumeItem{Fabricated a scale prototype in the UMass machine shop and evaluated its performance via a bench-top experiment}
+%      \resumeItem{Awarded Best Student Concept award in the MIE Capstone Senior Design Competition}
+% \cvItemListEnd
+
+% \vspace{7pt}
+
+% \begin{minipage}[t]{.70\textwidth}
+% \flushleft
+% \textbf{Vehicle Restoration} (Personal)\\
+% \end{minipage}
+% \hfill
+% \begin{minipage}[t]{.25\textwidth}
+% \flushright
+% 2014 - Present\\
+% \end{minipage}
+% \vspace{-7pt}
+% \cvItemListStart
+%      \resumeItem{Maintaining and restoring a 1999 Jeep Wrangler. Ongoing and completed projects include body paint, metalwork, transmission and transfer case swaps, drivetrain repairs, and general automotive maintenance}
+%      \resumeItem{Perform metalwork with flux-cored arc welding, grinding, and cutting tools}
+% \cvItemListEnd
+% }
+%
+%
+
+
+
+%-------------------------------------------
+\end{document}
+
+
